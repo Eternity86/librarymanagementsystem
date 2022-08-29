@@ -49,7 +49,7 @@ public class BookController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        return "list-books";
+        return "book/list-books";
     }
 
     @RequestMapping("/search-book")
@@ -57,14 +57,14 @@ public class BookController {
         model.addAttribute("books", bookService.searchBooks(keyword));
         model.addAttribute("keyword", keyword);
 
-        return "list-books";
+        return "book/list-books";
     }
 
     @RequestMapping("/book/{id}")
     public String findBookById(Model model, @PathVariable("id") long id) {
         model.addAttribute("book", bookService.findBookById(id));
 
-        return "list-book";
+        return "book/list-book";
     }
 
     @GetMapping("/add")
@@ -73,13 +73,13 @@ public class BookController {
         model.addAttribute("authors", authorService.findAllAuthors());
         model.addAttribute("publishers", publisherService.findAllPublishers());
 
-        return "add-book";
+        return "book/add-book";
     }
 
     @RequestMapping("/add-book")
     public String createBook(Model model, Book book, BindingResult result) {
         if (result.hasErrors()) {
-            return "add-book";
+            return "book/add-book";
         }
 
         bookService.createBook(book);
@@ -92,14 +92,14 @@ public class BookController {
     public String showUpdateForm(Model model, @PathVariable("id") long id) {
         model.addAttribute("book", bookService.findBookById(id));
 
-        return "update-book";
+        return "book/update-book";
     }
 
     @RequestMapping("update-book/{id}")
     public String updateBook(Model model, @PathVariable("id") long id, Book book, BindingResult result) {
         if (result.hasErrors()) {
             book.setId(id);
-            return "update-book";
+            return "book/update-book";
         }
 
         bookService.updateBook(book);
