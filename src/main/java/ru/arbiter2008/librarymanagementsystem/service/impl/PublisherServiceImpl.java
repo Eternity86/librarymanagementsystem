@@ -44,6 +44,7 @@ public class PublisherServiceImpl implements PublisherService {
     public void deletePublisher(Long id) {
         var publisher = publisherRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(String.format("Publisher with ID %d not found", id)));
+        publisherRepository.delete(publisher);
     }
 
 }
