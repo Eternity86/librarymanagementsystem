@@ -10,4 +10,9 @@ public class IndexController {
     public String login() {
         return "login";
     }
+
+//    @GetMapping("/")
+//    public String home() {
+//        return "index"; // TODO
+//    }
 }
